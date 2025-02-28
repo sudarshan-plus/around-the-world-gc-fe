@@ -1,0 +1,15 @@
+.custom-modal .modal-content {
+    background-color: grey !important;
+    color: white;
+  }
+  
+  .custom-modal .modal-header,
+  .custom-modal .modal-footer {
+    background-color: darkgrey;
+    border: none;
+  }
+  
+  .custom-modal .modal-body {
+    background-color: lightgrey;
+  }
+  
