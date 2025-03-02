@@ -23,7 +23,7 @@ export default function Game() {
   );
 }
 
-export const GameLocal=()=>{
+ const GameLocal=()=>{
   const [show, setShow] = useState(false);
   const [login, setLogin] = useState(false);
   const [userNameText, setUserNameText] = useState("");
