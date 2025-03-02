@@ -4,8 +4,8 @@ import { Button, Modal } from "react-bootstrap";
 import './page.css';
 import { db } from "@/firebase.config.mjs";
 import { onValue, ref, set } from "firebase/database";
-import { redirect, useSearchParams } from "next/navigation";
-import router from "next/router";
+import {  useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 export default function Game() {
   const [show, setShow] = useState(false);
   const [login, setLogin] = useState(false);
@@ -19,6 +19,7 @@ export default function Game() {
     setShow(true);
     setUserNameText(usernameText);
   }
+  const router = useRouter();
   const [input, setInput] = useState('');
   const [disabled, setDisabled] = useState(true);
   const [username, setUserName] = useState([] as any[]);
@@ -39,13 +40,23 @@ export default function Game() {
       // Success.
       // console.log([input]);
       setDisabled(true);
-      setUserNameText("Username (" + input + ") created Successfully. Please close the window.");
+      setUserNameText("Username (" + input + ") created Successfully. Please close the window and login.");
     }).catch((error) => {
       setUserNameText("Could not create username. Please try again.");
       console.log(error);
     });
   }
+  const searchParams = useSearchParams();
 
+  const createQueryString = useCallback(
+    () => {
+      const params = new URLSearchParams(searchParams.toString())
+      params.set('username', input)
+      
+      return params.toString()
+    },
+    [searchParams]
+  );
 
   const validateUserInput = () => {
     const query = ref(db as any, "usernames/" + input);
@@ -61,22 +72,13 @@ export default function Game() {
 
       }
       else if (data != null && login) {
-        setUserNameText("Username (" + input + ") logged in Successfully. Please close the window to continue.");
+        setUserNameText("Username (" + input + ") logged in Successfully.");
         handleClose();
         // redirect(`/game/start?username=${input}`);
-        const searchParams = useSearchParams();
  
   // Get a new searchParams string by merging the current
   // searchParams with a provided key/value pair
-  const createQueryString = useCallback(
-    () => {
-      const params = new URLSearchParams(searchParams.toString())
-      params.set('username', input)
-      
-      return params.toString()
-    },
-    [searchParams]
-  );
+  
       router.push(`/game/start` + '?' + createQueryString());
 
       }
