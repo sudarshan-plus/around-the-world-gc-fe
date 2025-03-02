@@ -49,8 +49,9 @@ export default function Game() {
   const searchParams = useSearchParams();
 
   const createQueryString = useCallback(
-    () => {
+    (input: string) => {
       const params = new URLSearchParams(searchParams.toString())
+      console.log(input);
       params.set('username', input)
       
       return params.toString()
@@ -78,7 +79,7 @@ export default function Game() {
  
   // Get a new searchParams string by merging the current
   // searchParams with a provided key/value pair
-    const v =  createQueryString();
+    const v =  createQueryString(input);
       router.push(`/game/start` + '?' + v);
 
       }

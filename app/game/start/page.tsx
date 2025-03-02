@@ -62,6 +62,9 @@ const CityClue = ({ hidden, username }: any) => {
     const [lives, setLives] = useState(3);
     const [submit,setSubmit]= useState(false);
     const [clueCalledTimes,setClueCalledTimes]= useState(0);
+    if(username==undefined || username == ''){
+        username = 'Anonymous';
+    }
     const getCityClue = async (sameCity =false)  => {
         if(clueCalledTimes==0){
             setClueCalledTimes(clueCalledTimes+1);
@@ -127,7 +130,7 @@ const CityClue = ({ hidden, username }: any) => {
                 <div className="d-flex justify-content-end">
                     <Row>
                     <InputGroup>
-                        <InputGroup.Text>User: {username ?? "Anonymous"}</InputGroup.Text>
+                        <InputGroup.Text>User: {username }</InputGroup.Text>
                         <InputGroup.Text>Points: {points}</InputGroup.Text>
                         <InputGroup.Text>Lives: {lives}</InputGroup.Text>
                         
