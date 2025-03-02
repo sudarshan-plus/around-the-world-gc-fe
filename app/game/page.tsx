@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import './page.css';
 import { db } from "@/firebase.config.mjs";
@@ -91,6 +91,8 @@ export default function Game() {
 
 
   return (
+
+    <Suspense fallback={null}>
     <div className="flex flex-col items-center justify-center h-screen">
       <h2 className="text-3xl font-bold">
         This is a game 🎮 where you have to guess the name of a country based on a clue 🕵️.
@@ -142,5 +144,6 @@ export default function Game() {
 
       </div>
     </div>
+    </Suspense>
   );
 }

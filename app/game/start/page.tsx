@@ -3,7 +3,7 @@ import {  Container, Row, ProgressBar, Image, InputGroup, Form } from "react-boo
 import { Button, Card, Spinner, Alert } from "react-bootstrap";
 import Confetti from "react-confetti";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import './page.css';
 export default function Start(props: any) {
@@ -28,6 +28,8 @@ export default function Start(props: any) {
     }, [time]);
 
     return (
+
+    <Suspense fallback={null}>
         <Container>
             <Container hidden={hidden} className="text-center mt-2">
                 <h2>⏳ Game starts in: {time}s</h2>
@@ -45,6 +47,7 @@ export default function Start(props: any) {
                 <CityClue hidden={!hidden} username={username} />
             </Container>
         </Container>
+        </Suspense>
     );
 };
 
