@@ -67,6 +67,18 @@ const CityClue = ({ hidden, username }: any) => {
     const [lives, setLives] = useState(3);
     const [submit,setSubmit]= useState(false);
     const [clueCalledTimes,setClueCalledTimes]= useState(0);
+
+    const refresh = () => {
+        getCityClue();
+    };
+    useEffect(() => {
+        if(lives<=0){
+            setLives(3);
+            setPoints(0);
+        }
+    },[lives]);
+
+
     if(username==undefined || username == ''){
         username = 'Anonymous';
     }
@@ -103,11 +115,7 @@ const CityClue = ({ hidden, username }: any) => {
         }
     };
 
-    const refresh = () => {
-        setPoints(0);
-        setLives(3);
-        getCityClue();
-    };
+    
    
     const checkAnswer = () => {
         console.log(userGuess);
