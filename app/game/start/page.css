@@ -1,0 +1,8 @@
+.blurred-svg {
+    filter: blur(8px); /* Adjust blur intensity */
+    transition: filter 0.5s ease-in-out;
+  }
+  
+  /* .blurred-svg:hover {
+    filter: blur(0px); /* Unblur on hover *
+  } */
