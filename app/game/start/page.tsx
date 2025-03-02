@@ -6,7 +6,12 @@ import Confetti from "react-confetti";
 import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import './page.css';
-export default function Start(props: any) {
+export const Start = ()=>{
+    <Suspense fallback={null}>
+    <StartLocal />
+    </Suspense>
+}
+const StartLocal=(props: any) =>{
 
     const [hidden, setHidden] = useState(false);
     const [time, setTime] = useState(5); // Start from 5 seconds
@@ -29,7 +34,6 @@ export default function Start(props: any) {
 
     return (
 
-    <Suspense fallback={null}>
         <Container>
             <Container hidden={hidden} className="text-center mt-2">
                 <h2>⏳ Game starts in: {time}s</h2>
@@ -47,7 +51,6 @@ export default function Start(props: any) {
                 <CityClue hidden={!hidden} username={username} />
             </Container>
         </Container>
-        </Suspense>
     );
 };
 
