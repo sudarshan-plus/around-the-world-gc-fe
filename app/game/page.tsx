@@ -78,8 +78,8 @@ export default function Game() {
  
   // Get a new searchParams string by merging the current
   // searchParams with a provided key/value pair
-  
-      router.push(`/game/start` + '?' + createQueryString());
+    const v =  createQueryString();
+      router.push(`/game/start` + '?' + v);
 
       }
       else if (snapshot.exists()) {
