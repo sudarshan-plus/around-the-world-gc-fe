@@ -7,9 +7,11 @@ import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import './page.css';
 export const Start = ()=>{
+    return(
     <Suspense fallback={null}>
     <StartLocal />
     </Suspense>
+);
 }
 const StartLocal=(props: any) =>{
 
