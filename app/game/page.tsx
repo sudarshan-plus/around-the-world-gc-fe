@@ -99,9 +99,6 @@ export default function Game() {
         The rules are simple:
         <ul>
           <li>
-            ⭐️ You have 30 seconds to guess the country.
-          </li>
-          <li>
             ⭐️ You have 3 lives.
           </li>
           <li>
