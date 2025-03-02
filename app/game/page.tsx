@@ -1,10 +1,11 @@
 'use client';
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import './page.css';
 import { db } from "@/firebase.config.mjs";
 import { onValue, ref, set } from "firebase/database";
-import { redirect } from "next/navigation";
+import { redirect, useSearchParams } from "next/navigation";
+import router from "next/router";
 export default function Game() {
   const [show, setShow] = useState(false);
   const [login, setLogin] = useState(false);
@@ -62,11 +63,23 @@ export default function Game() {
       else if (data != null && login) {
         setUserNameText("Username (" + input + ") logged in Successfully. Please close the window to continue.");
         handleClose();
-        redirect(`/game/start?username=${input}`);
+        // redirect(`/game/start?username=${input}`);
+        const searchParams = useSearchParams();
+ 
+  // Get a new searchParams string by merging the current
+  // searchParams with a provided key/value pair
+  const createQueryString = useCallback(
+    () => {
+      const params = new URLSearchParams(searchParams.toString())
+      params.set('username', input)
+      
+      return params.toString()
+    },
+    [searchParams]
+  );
+      router.push(`/game/start` + '?' + createQueryString());
+
       }
-
-
-
       else if (snapshot.exists()) {
         Object.values(data).map((usrname: any) => {
           if (!usrname.includes(input)) {
