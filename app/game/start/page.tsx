@@ -6,7 +6,7 @@ import Confetti from "react-confetti";
 import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import './page.css';
-export const Start = ()=>{
+export default function Start() {
     return(
     <Suspense fallback={null}>
     <StartLocal />
