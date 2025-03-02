@@ -1,5 +1,5 @@
 'use client';
-import { Col, Container, Row, ProgressBar, Image, InputGroup, Form } from "react-bootstrap";
+import {  Container, Row, ProgressBar, Image, InputGroup, Form } from "react-bootstrap";
 import { Button, Card, Spinner, Alert } from "react-bootstrap";
 import Confetti from "react-confetti";
 
@@ -9,7 +9,6 @@ import './page.css';
 export default function Start(props: any) {
 
     const [hidden, setHidden] = useState(false);
-    const [imageHidden, setImageHidden] = useState(false);
     const [time, setTime] = useState(5); // Start from 5 seconds
     const searchParams = useSearchParams();
     const username = searchParams.get('username');
@@ -60,7 +59,6 @@ const CityClue = ({ hidden, username }: any) => {
     const [lives, setLives] = useState(3);
     const [submit,setSubmit]= useState(false);
     const [clueCalledTimes,setClueCalledTimes]= useState(0);
-    const [message, setMessage] = useState("");
     const getCityClue = async (sameCity =false)  => {
         if(clueCalledTimes==0){
             setClueCalledTimes(clueCalledTimes+1);
@@ -99,9 +97,7 @@ const CityClue = ({ hidden, username }: any) => {
         setLives(3);
         getCityClue();
     };
-    const handleTimeUp = () => {
-        setMessage("⏰ Time's up! Try again!");
-      };
+   
     const checkAnswer = () => {
         console.log(userGuess);
         console.log(city);
