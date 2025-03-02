@@ -7,7 +7,7 @@ const openai = new OpenAI({
 export async function GET() {
   try {
     const prompt = `
-      Pick a random city and generate a clue for it.
+      Pick a random city from any part of the world and generate a clue for it.
       Format the response as JSON: {"clue": "Clue text here", "answer": "City name here"}.
       Example:
       {"clue": "This city has a famous opera house shaped like sails.", "answer": "Sydney"}
