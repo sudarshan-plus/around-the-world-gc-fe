@@ -7,6 +7,23 @@ import { onValue, ref, set } from "firebase/database";
 import {  useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 export default function Game() {
+  
+    // }, []);
+  
+
+
+
+
+
+  return (
+
+    <Suspense fallback={null}>
+     <GameLocal/>
+    </Suspense>
+  );
+}
+
+export const GameLocal=()=>{
   const [show, setShow] = useState(false);
   const [login, setLogin] = useState(false);
   const [userNameText, setUserNameText] = useState("");
@@ -99,67 +116,57 @@ export default function Game() {
         setUserNameText("Something Went Wrong.")
       }
     });
-    // }, []);
   }
-
-
-
-
-
-  return (
-
-    <Suspense fallback={null}>
+  return(
     <div className="flex flex-col items-center justify-center h-screen">
-      <h2 className="text-3xl font-bold">
-        This is a game 🎮 where you have to guess the name of a country based on a clue 🕵️.
-      </h2>
-      <h4>
-        The rules are simple:
-        <ul>
-          <li>
-            ⭐️ You have 3 lives.
-          </li>
-          <li>
-            ⭐️ If you guess the country correctly, you get 1 point.
-          </li>
-          <li>
-            ⭐️ If you guess the country incorrectly, you lose a life.
-          </li>
-        </ul>
-      </h4>
-      <div className="d-flex justify-content-center p-3">
-        <Button variant="primary" onClick={() => handleShow("Enter a unique username (3 - 10 characters):")}>
-          Create Your Username
-        </Button>
-      </div>
-      <span>OR</span>
-      <div className="p-2">
-        <Button onClick={() => {
-          handleShow("Enter your username");
-          setLogin(true);
-        }} >
-          Login
-        </Button>
-      </div>
-      <div >
-        <Modal show={show} onHide={() => handleShow} centered style={{ color: 'black' }} >
-
-          <Modal.Body >
-            {userNameText}
-            <input type="text" placeholder="Enter Username" className="input-group form-control" onInput={e => setInput(e.currentTarget.value)} minLength={3} maxLength={10} />
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-            <Button variant="primary" disabled={disabled} onClick={validateUserInput}>
-              {login ? "Login" : "Save Changes"}
-            </Button>
-          </Modal.Footer>
-        </Modal>
-
-      </div>
+    <h2 className="text-3xl font-bold">
+      This is a game 🎮 where you have to guess the name of a country based on a clue 🕵️.
+    </h2>
+    <h4>
+      The rules are simple:
+      <ul>
+        <li>
+          ⭐️ You have 3 lives.
+        </li>
+        <li>
+          ⭐️ If you guess the country correctly, you get 1 point.
+        </li>
+        <li>
+          ⭐️ If you guess the country incorrectly, you lose a life.
+        </li>
+      </ul>
+    </h4>
+    <div className="d-flex justify-content-center p-3">
+      <Button variant="primary" onClick={() => handleShow("Enter a unique username (3 - 10 characters):")}>
+        Create Your Username
+      </Button>
     </div>
-    </Suspense>
-  );
+    <span>OR</span>
+    <div className="p-2">
+      <Button onClick={() => {
+        handleShow("Enter your username");
+        setLogin(true);
+      }} >
+        Login
+      </Button>
+    </div>
+    <div >
+      <Modal show={show} onHide={() => handleShow} centered style={{ color: 'black' }} >
+
+        <Modal.Body >
+          {userNameText}
+          <input type="text" placeholder="Enter Username" className="input-group form-control" onInput={e => setInput(e.currentTarget.value)} minLength={3} maxLength={10} />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" disabled={disabled} onClick={validateUserInput}>
+            {login ? "Login" : "Save Changes"}
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+    </div>
+  </div>);
 }
